@@ -123,7 +123,7 @@ export async function installTool(
 
   switch (os) {
     case 'linux':
-      await apt(tool, version);
+      await apt(tool, version).catch(() => {});
       if (await isInstalled(tool, version, os)) return;
       await ghcup(tool, version, os);
       break;
